@@ -1,0 +1,88 @@
+.skillsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.group { padding: 1.8rem; }
+
+.groupTitle {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1rem;
+  color: var(--text);
+  margin-bottom: 1.1rem;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* Experience timeline */
+.expHeading {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.6rem;
+  color: var(--text);
+  margin-bottom: 2rem;
+  margin-top: 0.4rem;
+}
+
+.timeline {
+  position: relative;
+  padding-left: 2.5rem;
+  border-left: 2px solid var(--border);
+}
+
+.expItem {
+  position: relative;
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 1.5rem;
+  padding: 1.8rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.expItem:last-child { border-bottom: none; }
+
+.expDot {
+  position: absolute;
+  left: -2.6rem;
+  top: 2.2rem;
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  border: 3px solid var(--bg);
+}
+
+.expDates {
+  font-size: 0.78rem;
+  color: var(--text-soft);
+  font-weight: 500;
+  padding-top: 0.15rem;
+  line-height: 1.4;
+}
+
+.expRole {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.1rem;
+  color: var(--text);
+  margin-bottom: 0.2rem;
+}
+
+.expOrg {
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 0.6rem;
+}
+
+.expDesc {
+  font-size: 0.9rem;
+  color: var(--text-soft);
+  line-height: 1.65;
+}
+
+@media (max-width: 768px) {
+  .skillsGrid { grid-template-columns: 1fr; }
+  .expItem { grid-template-columns: 1fr; gap: 0.3rem; }
+  .expDates { font-size: 0.75rem; }
+}
