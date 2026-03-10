@@ -5,73 +5,67 @@
 }
 
 .card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 16px;
+  background: rgba(55,0,10,0.35);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(115,92,221,0.22);
+  border-radius: 12px;
   padding: 2rem;
   transition: all 0.25s;
   position: relative;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .card:hover {
-  border-color: var(--accent, var(--purple));
-  box-shadow: 0 8px 40px rgba(168,85,247,0.15);
+  border-color: rgba(144,0,179,0.55);
+  box-shadow: 0 8px 40px rgba(144,0,179,0.15);
   transform: translateY(-4px);
 }
 
 .topBar {
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: var(--gradient);
-  opacity: 0;
-  transition: opacity 0.25s;
+  height: 3px; width: 100%;
+  background: linear-gradient(90deg, #9000b3, #735cdd, #b3c2f2);
+  border-radius: 2px;
+  margin-bottom: 1.5rem;
+  opacity: 0.85;
 }
 
-.card:hover .topBar { opacity: 1; }
-
-.emoji {
-  font-size: 2rem;
-  margin-bottom: 0.8rem;
-}
+.emoji { font-size: 2rem; margin-bottom: 0.8rem; }
 
 .tag {
   font-size: 0.72rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--accent, var(--purple-light));
+  color: var(--accent, #b3c2f2);
   font-weight: 600;
   margin-bottom: 0.6rem;
 }
 
 .title {
   font-family: 'DM Serif Display', serif;
-  font-size: 1.25rem;
-  color: var(--text);
+  font-size: 1.2rem;
+  color: #e8e0f8;
   margin-bottom: 0.7rem;
+  font-weight: 400;
 }
 
 .desc {
   font-size: 0.9rem;
-  color: var(--text-soft);
+  color: #b3c2f2;
   margin-bottom: 1.3rem;
-  line-height: 1.65;
+  line-height: 1.7;
+  font-weight: 300;
 }
 
-.stack {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-}
+.stack { display: flex; flex-wrap: wrap; gap: 0.4rem; }
 
 .link {
   display: inline-block;
   margin-top: 1rem;
   font-size: 0.85rem;
-  color: var(--accent, var(--purple-light));
+  color: #9000b3;
   text-decoration: none;
   font-weight: 600;
 }
 
-.link:hover { text-decoration: underline; }
+.link:hover { text-decoration: underline; color: #b3c2f2; }

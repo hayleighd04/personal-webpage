@@ -6,87 +6,67 @@
 }
 
 .bio p {
-  color: var(--text-soft);
+  color: #b3c2f2;
   margin-bottom: 1.2rem;
   font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.8;
 }
 
-.actions {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-  margin-top: 1.8rem;
-}
+.actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.8rem; }
 
 .subheading {
   font-family: 'DM Serif Display', serif;
-  font-size: 1.2rem;
-  color: var(--text);
+  font-size: 1.15rem;
+  color: #e8e0f8;
   margin-bottom: 0.5rem;
+  font-weight: 400;
 }
 
-/* Education */
-.education {
-  margin-top: 2.5rem;
-}
+.education { margin-top: 2.5rem; }
 
 .eduItem {
   display: grid;
   grid-template-columns: 160px 1fr;
   gap: 1.5rem;
   padding: 1.5rem 0;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid rgba(115,92,221,0.15);
 }
 
 .eduItem:last-child { border-bottom: none; }
 
-.eduDates {
-  font-size: 0.78rem;
-  color: var(--text-soft);
-  font-weight: 500;
-  padding-top: 0.15rem;
-}
+.eduDates { font-size: 0.78rem; color: #735cdd; font-weight: 400; padding-top: 0.15rem; }
 
 .eduDegree {
   font-family: 'DM Serif Display', serif;
   font-size: 1rem;
-  color: var(--text);
+  color: #e8e0f8;
   margin-bottom: 0.15rem;
+  font-weight: 400;
 }
 
 .eduSchool {
   font-size: 0.85rem;
-  background: var(--gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  font-weight: 600;
+  color: #b3c2f2;
+  font-weight: 500;
   margin-bottom: 0.3rem;
 }
 
-.eduDetail {
-  font-size: 0.82rem;
-  color: var(--text-soft);
-}
+.eduDetail { font-size: 0.82rem; color: #735cdd; }
 
-/* Interests */
 .interestItem {
   display: flex;
   align-items: center;
   gap: 0.8rem;
   padding: 0.75rem 0;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid rgba(115,92,221,0.12);
   font-size: 0.92rem;
-  color: var(--text-soft);
+  color: #b3c2f2;
+  font-weight: 300;
 }
 
 .interestItem:last-child { border-bottom: none; }
-
-.icon {
-  font-size: 1.1rem;
-  width: 28px;
-  text-align: center;
-}
+.icon { font-size: 1.1rem; width: 28px; text-align: center; }
 
 @media (max-width: 900px) {
   .grid { grid-template-columns: 1fr; }

@@ -1,5 +1,6 @@
 import { HashRouter, Routes, Route } from 'react-router-dom'
 import { useEffect } from 'react'
+import { ThemeProvider } from './context/ThemeContext'
 import Nav from './components/Nav'
 import Footer from './components/Footer'
 import Home from './pages/Home'
@@ -10,7 +11,7 @@ import Contact from './pages/Contact'
 
 function ScrollReveal() {
   useEffect(() => {
-    const observe = () => {
+    const timer = setTimeout(() => {
       const reveals = document.querySelectorAll('.reveal')
       const io = new IntersectionObserver(
         (entries) => entries.forEach((e, i) => {
@@ -18,11 +19,9 @@ function ScrollReveal() {
         }),
         { threshold: 0.1 }
       )
-      reveals.forEach((el) => io.observe(el))
-      return io
-    }
-    // slight delay so new page content mounts first
-    const timer = setTimeout(() => observe(), 50)
+      reveals.forEach(el => io.observe(el))
+      return () => io.disconnect()
+    }, 50)
     return () => clearTimeout(timer)
   })
   return null
@@ -30,17 +29,19 @@ function ScrollReveal() {
 
 export default function App() {
   return (
-    <HashRouter>
-      <ScrollReveal />
-      <Nav />
-      <Routes>
-        <Route path="/"         element={<Home />} />
-        <Route path="/about"    element={<About />} />
-        <Route path="/projects" element={<Projects />} />
-        <Route path="/skills"   element={<Skills />} />
-        <Route path="/contact"  element={<Contact />} />
-      </Routes>
-      <Footer />
-    </HashRouter>
+    <ThemeProvider>
+      <HashRouter>
+        <ScrollReveal />
+        <Nav />
+        <Routes>
+          <Route path="/"         element={<Home />} />
+          <Route path="/about"    element={<About />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/skills"   element={<Skills />} />
+          <Route path="/contact"  element={<Contact />} />
+        </Routes>
+        <Footer />
+      </HashRouter>
+    </ThemeProvider>
   )
 }
