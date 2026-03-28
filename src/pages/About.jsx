@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom'
 import styles from './About.module.css'
-import aboutPfp from "/imports/about_pfp.jpg";
+
+// Use public folder assets
+const aboutPfp = '/about_pfp.jpg' // move about_pfp.jpg to /public
+const resumePdf = '/Daughtrey_Resume_MS.pdf' // move PDF to /public
 
 const interests = [
   { icon: '🖥️', label: 'UX Design & Human Factors Engineering' },
@@ -8,7 +11,7 @@ const interests = [
   { icon: '🧠', label: 'Understanding people, users & behavior' },
   { icon: '📖', label: 'Reading books' },
   { icon: '🥾', label: 'Hiking & spending time outdoors' },
-  { icon: '🏈', label: 'Watching sports (football, basketball, you name it)' },
+  { icon: '🏈', label: 'Watching sports' },
 ]
 
 const education = [
@@ -38,23 +41,16 @@ export default function About() {
 
         <div className={styles.grid}>
           <div className={styles.left}>
-
             <div className={`${styles.headshotWrap} reveal`}>
               <div className={styles.headshot}>
-                {/* Updated SVG implementation:
-                  'viewBox' defines the coordinate system.
-                  'r' in <circle> controls the size of the clip.
-                */}
                 <svg width="200" height="200" viewBox="0 0 200 200">
                   <defs>
                     <clipPath id="pfpClip">
-                      {/* Increased radius to 90 for a larger circle centered at 100,100 */}
                       <circle cx="100" cy="100" r="90" />
                     </clipPath>
                   </defs>
-
                   <image
-                    href={aboutPfp}
+                    href={`${import.meta.env.BASE_URL}about_pfp.jpg`}
                     x="10"
                     y="10"
                     width="180"
@@ -68,25 +64,24 @@ export default function About() {
 
             <div className={`${styles.bio} reveal`}>
               <p>
-                I'm a Computer Science undergraduate at NC State University with a passion for
-                building technology that genuinely works for people. My interests sit at the
-                intersection of UX design, human factors, machine learning, and product management. I care deeply
-                about understanding users and creating experiences that feel intuitive.
+                I'm a Computer Science undergraduate at NC State University with a passion for building
+                technology that genuinely works for people. My interests sit at the intersection of
+                UX design, human factors, machine learning, and product management.
               </p>
               <p>
-                Alongside my technical coursework, I've pursued Cognitive Science and Psychology
-                minors to better understand the people who use a product. I believe the best
-                products are built by people who ask why, just as much as how.
+                Alongside my technical coursework, I've pursued Cognitive Science and Psychology minors
+                to better understand the people who use a product.
               </p>
               <p>
-                When I'm not in front of a screen, you'll find me with a book in my hand, out hiking on an adventure,
-                or watching whatever sport happens to be in season.
+                When I'm not in front of a screen, you'll find me with a book, hiking, or watching sports.
               </p>
               <div className={styles.actions}>
-                <a href="/imports/Daughtrey_Resume_MS.pdf" className="btn btn-primary" download>
+                <a href={`${import.meta.env.BASE_URL}Daughtrey_Resume_MS.pdf`} className="btn btn-primary" download>
                   Download Resume
                 </a>
-                <Link to="/projects" className="btn btn-outline">View Projects</Link>
+                <Link to="/projects" className="btn btn-outline">
+                  View Projects
+                </Link>
               </div>
             </div>
 

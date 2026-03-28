@@ -13,13 +13,12 @@ function ScrollReveal() {
   const location = useLocation()
 
   useEffect(() => {
-    // Reset all reveals on route change so they animate in fresh
     document.querySelectorAll('.reveal').forEach(el => el.classList.remove('visible'))
 
     const timer = setTimeout(() => {
       const reveals = document.querySelectorAll('.reveal')
       const io = new IntersectionObserver(
-        (entries) => entries.forEach((e, i) => {
+        entries => entries.forEach((e, i) => {
           if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 80)
         }),
         { threshold: 0.1 }
