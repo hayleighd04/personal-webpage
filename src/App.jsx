@@ -1,4 +1,4 @@
-import { HashRouter, Routes, Route } from 'react-router-dom'
+import { HashRouter, Routes, Route, useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
 import { ThemeProvider } from './context/ThemeContext'
 import Nav from './components/Nav'
@@ -10,7 +10,12 @@ import Skills from './pages/Skills'
 import Contact from './pages/Contact'
 
 function ScrollReveal() {
+  const location = useLocation()
+
   useEffect(() => {
+    // Reset all reveals on route change so they animate in fresh
+    document.querySelectorAll('.reveal').forEach(el => el.classList.remove('visible'))
+
     const timer = setTimeout(() => {
       const reveals = document.querySelectorAll('.reveal')
       const io = new IntersectionObserver(
@@ -22,8 +27,10 @@ function ScrollReveal() {
       reveals.forEach(el => io.observe(el))
       return () => io.disconnect()
     }, 50)
+
     return () => clearTimeout(timer)
-  })
+  }, [location.pathname])
+
   return null
 }
 

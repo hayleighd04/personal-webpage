@@ -28,7 +28,7 @@
 /* ── MOON ── */
 .moon {
   position: fixed;
-  top: 88px; right: 5%;
+  top: 100px; left: 5%;
   width: 108px; height: 108px;
   border-radius: 50%;
   background: radial-gradient(circle at 38% 38%, #e8d5ff, #b3c2f2 45%, #735cdd 100%);

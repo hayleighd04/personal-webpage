@@ -1,4 +1,4 @@
-.layout { max-width: 640px; }
+.layout { max-width: 1200px; }
 
 .intro p {
   color: #b3c2f2;
@@ -24,15 +24,25 @@
   color: #e8e0f8;
 }
 
-.contactCard:hover {
+.contactCard:not(.contactCardStatic):hover {
   border-color: rgba(144,0,179,0.55);
   box-shadow: 0 4px 24px rgba(144,0,179,0.15);
   transform: translateX(5px);
 }
 
-.contactCard:hover .arrow { opacity: 1; transform: translateX(3px); }
+.contactCard:not(.contactCardStatic):hover .arrow {
+  opacity: 1;
+  transform: translateX(3px);
+}
 
-.contactEmoji { font-size: 1.5rem; }
+.contactCardStatic {
+  cursor: default;
+  opacity: 0.85;
+}
+
+.contactEmoji { font-size: 1.5rem; flex-shrink: 0; }
+
+.contactInfo { flex: 1; }
 
 .contactLabel {
   font-size: 0.72rem;
@@ -45,4 +55,11 @@
 
 .contactValue { font-size: 0.92rem; color: #b3c2f2; font-weight: 300; }
 
-.arrow { margin-left: auto; font-size: 1.1rem; opacity: 0; transition: all 0.2s; color: #9000b3; }
+.contactNote {
+  font-size: 0.75rem;
+  color: rgba(179,194,242,0.5);
+  margin-top: 0.2rem;
+  font-style: italic;
+}
+
+.arrow { margin-left: auto; font-size: 1.1rem; opacity: 0; transition: all 0.2s; color: #9000b3; flex-shrink: 0; }

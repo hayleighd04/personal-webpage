@@ -5,12 +5,40 @@
   align-items: start;
 }
 
+/* Headshot */
+
+.headshot {
+  position: relative;
+  width: 120px;
+  height: 130px;
+display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.headshotImg {
+  position: absolute;
+  top: 15px;
+  left: 30px;
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+
+
 .bio p {
   color: #b3c2f2;
   margin-bottom: 1.2rem;
   font-size: 1rem;
   font-weight: 300;
   line-height: 1.8;
+}
+
+.bio em {
+  color: #e8e0f8;
+  font-style: italic;
 }
 
 .actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.8rem; }

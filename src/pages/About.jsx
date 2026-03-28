@@ -1,12 +1,14 @@
 import { Link } from 'react-router-dom'
 import styles from './About.module.css'
+import aboutPfp from "/imports/about_pfp.jpg";
 
 const interests = [
-  { icon: '🧠', label: 'Human-Computer Interaction & UX Design' },
-  { icon: '🔬', label: 'Research & data-driven problem solving' },
-  { icon: '💡', label: 'Psychology & cognitive science' },
-  { icon: '⚙️', label: 'Systems that are intuitive to use' },
-  { icon: '🌱', label: 'Bridging engineering & human behavior' },
+  { icon: '🖥️', label: 'UX Design & Human Factors Engineering' },
+  { icon: '📋', label: 'Product Management & strategy' },
+  { icon: '🧠', label: 'Understanding people, users & behavior' },
+  { icon: '📖', label: 'Reading books' },
+  { icon: '🥾', label: 'Hiking & spending time outdoors' },
+  { icon: '🏈', label: 'Watching sports (football, basketball, you name it)' },
 ]
 
 const education = [
@@ -36,24 +38,52 @@ export default function About() {
 
         <div className={styles.grid}>
           <div className={styles.left}>
+
+            <div className={`${styles.headshotWrap} reveal`}>
+              <div className={styles.headshot}>
+                {/* Updated SVG implementation:
+                  'viewBox' defines the coordinate system.
+                  'r' in <circle> controls the size of the clip.
+                */}
+                <svg width="200" height="200" viewBox="0 0 200 200">
+                  <defs>
+                    <clipPath id="pfpClip">
+                      {/* Increased radius to 90 for a larger circle centered at 100,100 */}
+                      <circle cx="100" cy="100" r="90" />
+                    </clipPath>
+                  </defs>
+
+                  <image
+                    href={aboutPfp}
+                    x="10"
+                    y="10"
+                    width="180"
+                    height="180"
+                    clipPath="url(#pfpClip)"
+                    preserveAspectRatio="xMidYMid slice"
+                  />
+                </svg>
+              </div>
+            </div>
+
             <div className={`${styles.bio} reveal`}>
               <p>
-                I'm a Computer Science graduate from NC State University, now beginning
-                my Master's in Industrial Engineering — a path that reflects my belief
-                that the best systems are built with people at the center.
+                I'm a Computer Science undergraduate at NC State University with a passion for
+                building technology that genuinely works for people. My interests sit at the
+                intersection of UX design, human factors, machine learning, and product management. I care deeply
+                about understanding users and creating experiences that feel intuitive.
               </p>
               <p>
-                My undergrad gave me a strong technical foundation paired with a deep
-                curiosity about the mind through Cognitive Science and Psychology minors.
-                I love asking: how do people think, and how can technology meet them there?
+                Alongside my technical coursework, I've pursued Cognitive Science and Psychology
+                minors to better understand the people who use a product. I believe the best
+                products are built by people who ask why, just as much as how.
               </p>
               <p>
-                From building ML pipelines for biomedical research at UMass Lowell to
-                designing full-stack platforms in Agile teams, I've learned that the most
-                meaningful work sits at the intersection of engineering and empathy.
+                When I'm not in front of a screen, you'll find me with a book in my hand, out hiking on an adventure,
+                or watching whatever sport happens to be in season.
               </p>
               <div className={styles.actions}>
-                <a href="/Daughtrey_Resume_MS.pdf" className="btn btn-primary" download>
+                <a href="/imports/Daughtrey_Resume_MS.pdf" className="btn btn-primary" download>
                   Download Resume
                 </a>
                 <Link to="/projects" className="btn btn-outline">View Projects</Link>

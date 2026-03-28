@@ -5,12 +5,8 @@ import styles from './Home.module.css'
 const tags = ['UX & HCI', 'Machine Learning']
 
 // ── ORION (left sky) — true proportions
-// Orion is tall: head at top-center, wide shoulders, diagonal belt, wide feet
-// Belt tilts ~20° (Mintaka highest-left → Alnitak lowest-right)
-// Index: 0=Betelgeuse, 1=Bellatrix, 2=Mintaka, 3=Alnilam, 4=Alnitak, 5=Saiph, 6=Rigel, 7=Meissa
-
  const ORION = {
-  name: 'ORION', labelX: 17, labelY: 6,
+ // name: 'ORION', labelX: 17, labelY: 6,
   stars: [
   //  { x:13, y:26, r:0.58, color:'#ffb347', name:'Betelgeuse' }, // 0 left shoulder, orange
   //  { x:24, y:23, r:0.36, color:'#cce6ff', name:'Bellatrix'  }, // 1 right shoulder, blue-white
@@ -32,9 +28,11 @@ const tags = ['UX & HCI', 'Machine Learning']
 }
  
 
-// ── LEO (right sky)
+// ── LEO (bottom-left side)
 const LEO = {
-  name: 'LEO', labelX: 72, labelY: 8,
+    // x is left and right, y is up and down
+    // r is the radius
+    // stars are the location
   stars: [
     { x:7.75, y:68,    r:0.38, color:'#ffffff', name:'Denebola'  },
     { x:8.25, y:60.25, r:0.32, color:'#ffffff', name:'Zosma'     },
@@ -46,6 +44,7 @@ const LEO = {
     { x:13.25, y:46.65,r:0.30, color:'#ffffff', name:'Rasalas'   },
     { x:15.3, y:46.8,  r:0.30, color:'#ffffff', name:'Algenubi'  },
   ],
+  // lines that connect the stars
   lines: [[0,1],[1,2],[0,2],[2,3],[3,4],[4,5],[1,5],[5,6],[6,7],[7,8]],
 }
 
@@ -248,44 +247,79 @@ function NatureScene() {
         <div className={styles.treeTop} style={{background:'#6a9c7a'}}/>
         <div className={styles.treeTop} style={{bottom:'55%',width:65,height:60,left:'50%',transform:'translateX(-50%)',background:'#5a8c6a'}}/>
       </div>
-      <div className={styles.mascotWrapper}>
-        <div className={styles.mascotTooltip}>Hi there! 🌸</div>
-        <svg className={styles.pig} viewBox="0 0 120 140" xmlns="http://www.w3.org/2000/svg">
-          <ellipse cx="60" cy="136" rx="30" ry="6" fill="rgba(0,0,0,0.1)"/>
-          <ellipse cx="60" cy="100" rx="34" ry="30" fill="#f9a8d4"/>
-          <ellipse cx="60" cy="103" rx="20" ry="16" fill="#fce7f3" opacity="0.7"/>
-          <rect x="34" y="118" width="14" height="18" rx="7" fill="#f472b6"/>
-          <rect x="72" y="118" width="14" height="18" rx="7" fill="#f472b6"/>
-          <ellipse cx="41" cy="136" rx="8" ry="5" fill="#db2777"/>
-          <ellipse cx="79" cy="136" rx="8" ry="5" fill="#db2777"/>
-          <g transform="rotate(-25,28,92)">
-            <rect x="22" y="90" width="12" height="22" rx="6" fill="#f9a8d4"/>
-            <ellipse cx="28" cy="113" rx="7" ry="5" fill="#f472b6"/>
-          </g>
-          <g className={styles.waveArm} style={{transformOrigin:'88px 90px'}}>
-            <rect x="82" y="88" width="12" height="24" rx="6" fill="#f9a8d4"/>
-            <ellipse cx="88" cy="113" rx="7" ry="5" fill="#f472b6"/>
-          </g>
-          <circle cx="60" cy="66" r="28" fill="#fce7f3"/>
-          <ellipse cx="36" cy="48" rx="11" ry="13" fill="#f9a8d4"/>
-          <ellipse cx="84" cy="48" rx="11" ry="13" fill="#f9a8d4"/>
-          <ellipse cx="36" cy="48" rx="7" ry="9" fill="#fbcfe8"/>
-          <ellipse cx="84" cy="48" rx="7" ry="9" fill="#fbcfe8"/>
-          <ellipse cx="60" cy="76" rx="13" ry="10" fill="#f9a8d4"/>
-          <circle cx="55" cy="77" r="3.2" fill="#db2777" opacity="0.55"/>
-          <circle cx="65" cy="77" r="3.2" fill="#db2777" opacity="0.55"/>
-          <circle cx="51" cy="60" r="5.5" fill="white"/>
-          <circle cx="69" cy="60" r="5.5" fill="white"/>
-          <circle cx="52" cy="60" r="3.2" fill="#1e1b4b"/>
-          <circle cx="70" cy="60" r="3.2" fill="#1e1b4b"/>
-          <circle cx="53" cy="59" r="1.1" fill="white"/>
-          <circle cx="71" cy="59" r="1.1" fill="white"/>
-          <ellipse cx="43" cy="68" rx="7" ry="4.5" fill="#f472b6" opacity="0.3"/>
-          <ellipse cx="77" cy="68" rx="7" ry="4.5" fill="#f472b6" opacity="0.3"/>
-          <path d="M 52 72 Q 60 79 68 72" stroke="#db2777" strokeWidth="2.2" fill="none" strokeLinecap="round"/>
-          <text x="60" y="34" fontSize="9" textAnchor="middle" fill="#c9714a">🌸</text>
-        </svg>
-      </div>
+         
+    <div className={styles.mascotWrapper}>
+            <svg className={styles.pig} viewBox="0 0 120 160" xmlns="http://www.w3.org/2000/svg">
+            {/* Drop shadow */}
+            <ellipse cx="60" cy="156" rx="26" ry="5" fill="rgba(80,40,60,0.2)"/>
+    
+            {/* ── BODY ── chunky round torso */}
+            <ellipse cx="60" cy="108" rx="30" ry="28" fill="#f4a8bc"/>
+            {/* Belly */}
+            <ellipse cx="60" cy="112" rx="19" ry="17" fill="#fcd8e4" opacity="0.75"/>
+    
+            {/* ── LEGS ── short stubby */}
+            {/* Back left leg */}
+            <rect x="34" y="128" width="16" height="20" rx="8" fill="#f090ac"/>
+            {/* Back right leg */}
+            <rect x="70" y="128" width="16" height="20" rx="8" fill="#f090ac"/>
+            {/* Hooves */}
+            <ellipse cx="42" cy="150" rx="9" ry="5" fill="#8b5a6a"/>
+            <ellipse cx="78" cy="150" rx="9" ry="5" fill="#8b5a6a"/>
+    
+            {/* ── LEFT ARM — relaxed down ── */}
+            <rect x="22" y="96" width="14" height="22" rx="7" fill="#f4a8bc" transform="rotate(15,29,107)"/>
+            <ellipse cx="27" cy="122" rx="8" ry="5" fill="#8b5a6a" transform="rotate(15,27,122)"/>
+    
+            {/* ── RIGHT ARM — waving up ── */}
+            <g className={styles.waveArm} style={{transformOrigin:'91px 95px'}}>
+                <rect x="84" y="82" width="14" height="22" rx="7" fill="#f4a8bc" transform="rotate(-20,91,93)"/>
+                <ellipse cx="91" cy="106" rx="8" ry="5" fill="#8b5a6a" transform="rotate(-20,91,106)"/>
+            </g>
+    
+            {/* ── CURLY TAIL ── 
+            <path d="M 88 100 Q 100 94 97 86 Q 94 79 100 74"
+                fill="none" stroke="#f090ac" strokeWidth="3.5" strokeLinecap="round"/>
+            */}
+            
+            {/* ── HEAD ── big round */}
+            <circle cx="60" cy="68" r="32" fill="#f4a8bc"/>
+    
+            {/* ── EARS ── floppy, slightly tilted */}
+            <ellipse cx="34" cy="44" rx="13" ry="16" fill="#f4a8bc" transform="rotate(-18,34,44)"/>
+            <ellipse cx="86" cy="44" rx="13" ry="16" fill="#f4a8bc" transform="rotate(18,86,44)"/>
+            {/* Inner ear */}
+            <ellipse cx="34" cy="44" rx="8" ry="10" fill="#f8c8d4" transform="rotate(-18,34,44)"/>
+            <ellipse cx="86" cy="44" rx="8" ry="10" fill="#f8c8d4" transform="rotate(18,86,44)"/>
+    
+            {/* ── EYES ── big round kawaii */}
+            <circle cx="47" cy="64" r="8" fill="white"/>
+            <circle cx="73" cy="64" r="8" fill="white"/>
+            {/* Pupils */}
+            <circle cx="48.5" cy="65" r="5" fill="#2d1520"/>
+            <circle cx="74.5" cy="65" r="5" fill="#2d1520"/>
+            {/* Eye shine */}
+            <circle cx="51"   cy="62" r="2"   fill="white"/>
+            <circle cx="77"   cy="62" r="2"   fill="white"/>
+            <circle cx="47"   cy="67" r="1"   fill="white" opacity="0.6"/>
+            <circle cx="73"   cy="67" r="1"   fill="white" opacity="0.6"/>
+    
+            {/* ── ROSY CHEEKS ── */}
+            <ellipse cx="36" cy="74" rx="9" ry="6" fill="#f472b6" opacity="0.28"/>
+            <ellipse cx="84" cy="74" rx="9" ry="6" fill="#f472b6" opacity="0.28"/>
+    
+            {/* ── SNOUT ── round prominent */}
+            <ellipse cx="60" cy="80" rx="15" ry="11" fill="#f090ac"/>
+            {/* Nostrils */}
+            <ellipse cx="54" cy="81" rx="3.5" ry="4"   fill="#c0607a" opacity="0.8"/>
+            <ellipse cx="66" cy="81" rx="3.5" ry="4"   fill="#c0607a" opacity="0.8"/>
+    
+            {/* ── SMILE ── */}
+            <path d="M 50 90 Q 60 98 70 90"
+                stroke="#c0607a" strokeWidth="2.5" fill="none" strokeLinecap="round"/>
+            </svg>
+        </div>
+        
     </>
   )
 }
@@ -313,7 +347,7 @@ export default function Home() {
           </div>
           <div className={styles.ctas}>
             <Link to="/projects" className="btn btn-primary">See My Work</Link>
-            <Link to="/contact"  className="btn btn-outline">Get In Touch</Link>
+            {/* <Link to="/contact"  className="btn btn-outline">Get In Touch</Link> */}
           </div>
         </div>
       </div>
