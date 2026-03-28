@@ -1,77 +1,197 @@
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 1.5rem;
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 .card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 2rem;
+  background: rgba(55,0,10,0.35);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(115,92,221,0.22);
+  border-radius: 14px;
+  overflow: hidden;
   transition: all 0.25s;
   position: relative;
-  overflow: hidden;
 }
 
 .card:hover {
-  border-color: var(--accent, var(--purple));
-  box-shadow: 0 8px 40px rgba(168,85,247,0.15);
-  transform: translateY(-4px);
+  border-color: rgba(144,0,179,0.5);
+  box-shadow: 0 8px 40px rgba(144,0,179,0.12);
+  transform: translateY(-3px);
 }
 
 .topBar {
-  position: absolute;
-  top: 0; left: 0; right: 0;
   height: 3px;
-  background: var(--gradient);
-  opacity: 0;
-  transition: opacity 0.25s;
+  width: 100%;
+  background: linear-gradient(90deg, var(--accent), rgba(179,194,242,0.5));
+  opacity: 0.9;
 }
 
-.card:hover .topBar { opacity: 1; }
-
-.emoji {
-  font-size: 2rem;
-  margin-bottom: 0.8rem;
+.cardInner {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 0;
 }
+
+.cardText {
+  padding: 2rem;
+}
+
+.metaRow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.9rem;
+}
+
+.emoji { font-size: 1.4rem; }
 
 .tag {
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--accent, var(--purple-light));
+  color: var(--accent);
   font-weight: 600;
-  margin-bottom: 0.6rem;
+}
+
+.dates {
+  font-size: 0.75rem;
+  color: rgba(179,194,242,0.5);
+  margin-left: auto;
 }
 
 .title {
   font-family: 'DM Serif Display', serif;
-  font-size: 1.25rem;
-  color: var(--text);
+  font-size: 1.35rem;
+  color: #e8e0f8;
   margin-bottom: 0.7rem;
+  font-weight: 400;
 }
 
 .desc {
-  font-size: 0.9rem;
-  color: var(--text-soft);
-  margin-bottom: 1.3rem;
-  line-height: 1.65;
+  font-size: 0.88rem;
+  color: #b3c2f2;
+  margin-bottom: 1rem;
+  line-height: 1.75;
+  font-weight: 300;
+}
+
+.bullets {
+  list-style: none;
+  margin-bottom: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.bullet {
+  display: flex;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: rgba(179,194,242,0.8);
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+.bulletDot {
+  color: var(--accent);
+  flex-shrink: 0;
+  font-size: 0.7rem;
+  margin-top: 0.22rem;
 }
 
 .stack {
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem;
+  margin-top: 0.5rem;
 }
 
 .link {
   display: inline-block;
   margin-top: 1rem;
   font-size: 0.85rem;
-  color: var(--accent, var(--purple-light));
+  color: var(--accent);
   text-decoration: none;
   font-weight: 600;
 }
 
 .link:hover { text-decoration: underline; }
+
+/* Screenshot panel */
+.screenshotWrap {
+  border-left: 1px solid rgba(115,92,221,0.15);
+  background: rgba(10,2,20,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 220px;
+  overflow: hidden;
+}
+
+.screenshot {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.screenshotPlaceholder {
+  width: 100%;
+  height: 100%;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  align-items: flex-start;
+  justify-content: center;
+  position: relative;
+}
+
+.placeholderBar {
+  height: 8px;
+  width: 90%;
+  background: rgba(115,92,221,0.18);
+  border-radius: 4px;
+}
+
+.placeholderBlock {
+  height: 70px;
+  width: 100%;
+  background: rgba(115,92,221,0.1);
+  border-radius: 6px;
+  border: 1px solid rgba(115,92,221,0.15);
+  margin: 0.2rem 0;
+}
+
+.placeholderRow {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.placeholderChip {
+  height: 18px;
+  width: 52px;
+  background: rgba(115,92,221,0.15);
+  border-radius: 99px;
+}
+
+.placeholderLabel {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  font-size: 0.65rem;
+  color: rgba(179,194,242,0.35);
+  letter-spacing: 0.04em;
+}
+
+@media (max-width: 900px) {
+  .cardInner { grid-template-columns: 1fr; }
+  .screenshotWrap {
+    border-left: none;
+    border-top: 1px solid rgba(115,92,221,0.15);
+    min-height: 160px;
+  }
+  .dates { margin-left: 0; }
+}
