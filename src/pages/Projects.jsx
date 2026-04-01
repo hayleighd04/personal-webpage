@@ -37,14 +37,14 @@ export default function Projects() {
     <div className="page">
       <div className="page-content">
 
-        {/* Header — reveal only on first page load, not affected by filter */}
+        {/* Header */}
         <div className="reveal">
           <p className="page-eyebrow">What I've Built</p>
           <h1 className="page-title">Projects</h1>
           <hr className="page-divider" />
         </div>
 
-        {/* Filter bar — reveal only on first load */}
+        {/* Filter bar */}
         <div className={`${styles.filterRow} reveal`}>
           {CATEGORIES.map(({ key, label, icon }) => {
             const isActive = active === key
@@ -66,79 +66,78 @@ export default function Projects() {
           })}
         </div>
 
-        {/* Cards — NO reveal class; always visible, animate in via CSS only */}
+        {/* Cards */}
         <div className={styles.list}>
           {visible.length === 0 ? (
             <div className={styles.empty}>No projects in this category yet.</div>
           ) : (
-            visible.map((p, i) => (
-              <article
-                key={p.id}
-                className={styles.card}
-                style={{
-                  '--accent': accentRgb[p.accent],
-                  '--accentBg': accentBg[p.accent],
-                  animationDelay: `${i * 60}ms`,
-                }}
-                onClick={() => navigate(`/projects/${p.id}`)}
-                role="button"
-                tabIndex={0}
-                onKeyDown={e => e.key === 'Enter' && navigate(`/projects/${p.id}`)}
-                aria-label={`View details for ${p.title}`}
-              >
-                <div className={styles.topBar} />
+            visible.map((p, i) => {
+              // Skip embed entries — use first real image as card thumbnail
+              const thumb = p.images?.find(img => img.type !== 'embed')
 
-                <div className={styles.cardInner}>
-                  <div className={styles.cardText}>
-                    <div className={styles.metaRow}>
-                      <span className={styles.emoji}>{p.emoji}</span>
-                      <span className={styles.tag}>{p.tag}</span>
-                      <span className={styles.dates}>{p.dates}</span>
+              return (
+                <article
+                  key={p.id}
+                  className={styles.card}
+                  style={{
+                    '--accent': accentRgb[p.accent],
+                    '--accentBg': accentBg[p.accent],
+                    animationDelay: `${i * 60}ms`,
+                  }}
+                  onClick={() => navigate(`/projects/${p.id}`)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={e => e.key === 'Enter' && navigate(`/projects/${p.id}`)}
+                  aria-label={`View details for ${p.title}`}
+                >
+                  <div className={styles.topBar} />
+
+                  {/* Go full-width when there is no thumbnail to show */}
+                  <div className={`${styles.cardInner} ${!thumb ? styles.cardInnerFull : ''}`}>
+                    <div className={styles.cardText}>
+                      <div className={styles.metaRow}>
+                        <span className={styles.emoji}>{p.emoji}</span>
+                        <span className={styles.tag}>{p.tag}</span>
+                        <span className={styles.dates}>{p.dates}</span>
+                      </div>
+
+                      <h3 className={styles.title}>{p.title}</h3>
+                      <p className={styles.desc}>{p.shortDesc}</p>
+
+                      <ul className={styles.bullets}>
+                        {p.highlights.slice(0, 3).map((b) => (
+                          <li key={b} className={styles.bullet}>
+                            <span className={styles.bulletDot}>▸</span>
+                            <span>{b}</span>
+                          </li>
+                        ))}
+                      </ul>
+
+                      <div className={styles.stack}>
+                        {p.stack.map((s) => <span key={s} className="stack-chip">{s}</span>)}
+                      </div>
+
+                      <div className={styles.cta}>
+                        <span className={styles.ctaLink} style={{ color: accentRgb[p.accent] }}>
+                          View Details →
+                        </span>
+                      </div>
                     </div>
 
-                    <h3 className={styles.title}>{p.title}</h3>
-                    <p className={styles.desc}>{p.shortDesc}</p>
-
-                    <ul className={styles.bullets}>
-                      {p.highlights.slice(0, 3).map((b) => (
-                        <li key={b} className={styles.bullet}>
-                          <span className={styles.bulletDot}>▸</span>
-                          <span>{b}</span>
-                        </li>
-                      ))}
-                    </ul>
-
-                    <div className={styles.stack}>
-                      {p.stack.map((s) => <span key={s} className="stack-chip">{s}</span>)}
-                    </div>
-
-                    <div className={styles.cta}>
-                      <span className={styles.ctaLink} style={{ color: accentRgb[p.accent] }}>
-                        View Details →
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className={styles.screenshotWrap}>
-                    {p.images && p.images.length > 0 ? (
-                      <img src={p.images[0].src} alt={`${p.title} screenshot`} className={styles.screenshot} />
-                    ) : (
-                      <div className={styles.screenshotPlaceholder}>
-                        <div className={styles.placeholderBar} />
-                        <div className={styles.placeholderBar} style={{ width: '70%' }} />
-                        <div className={styles.placeholderBlock} />
-                        <div className={styles.placeholderRow}>
-                          <div className={styles.placeholderChip} />
-                          <div className={styles.placeholderChip} />
-                          <div className={styles.placeholderChip} />
-                        </div>
-                        <span className={styles.placeholderLabel}>Screenshot coming soon</span>
+                    {/* Only render the screenshot panel when a real image exists */}
+                    {thumb && (
+                      <div className={styles.screenshotWrap}>
+                        <img
+                          src={thumb.src}
+                          alt={`${p.title} screenshot`}
+                          className={styles.screenshot}
+                        />
                       </div>
                     )}
                   </div>
-                </div>
-              </article>
-            ))
+                </article>
+              )
+            })
           )}
         </div>
 
