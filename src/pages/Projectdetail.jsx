@@ -1,14 +1,28 @@
 import { useParams, useNavigate, Link } from 'react-router-dom'
 import { useState, useEffect, useCallback } from 'react'
 import { useTheme } from '../context/ThemeContext'
-import styles from './ProjectDetail.module.css'
+import styles from './Projectdetail.module.css'
+
+const base = import.meta.env.BASE_URL;
+
+// Helper function to ensure images load correctly on GitHub Pages sub-paths
+// It removes double slashes and ensures the BASE_URL is prepended.
+const fixPath = (path) => {
+  if (!path) return null;
+  // If the path is already an absolute URL or starts with the base, return it
+  if (path.startsWith('http') || path.startsWith(base)) return path;
+  
+  const cleanBase = base.endsWith('/') ? base : `${base}/`;
+  const cleanPath = path.startsWith('/') ? path.slice(1) : path;
+  return `${cleanBase}${cleanPath}`;
+};
 
 // ─────────────────────────────────────────────
 // PROJECT DATA
 // category: 'professional' | 'personal' | 'academic'
 // ─────────────────────────────────────────────
 export const projects = [
-
+    
   // ══════════════════════════════════════════
   // PROFESSIONAL (all pink)
   // ══════════════════════════════════════════
@@ -21,13 +35,13 @@ export const projects = [
     shortDesc: 'AI-powered chatbot built to support NC State students during enrollment.',
     accent: 'pink',
     category: 'professional',
-    images: [
-      { src: '/imports/tuffybot/image1.png',      caption: 'UI for the TuffyBot' },
-      { src: '/imports/tuffybot/highlevel.png',    caption: 'High-Level Diagram' },
-      { src: '/imports/tuffybot/preliminary.jpg',  caption: 'Preliminary Diagram of the TuffyBot Flow' },
-      { src: '/imports/tuffybot/map.png',          caption: 'DAG Database' },
-      { src: '/imports/tuffybot/wireframe.png',    caption: 'Wireframe of TuffyBot' },
-      { src: '/imports/tuffybot/dag1.png',         caption: 'Diagram of Course Relationships' },
+     images: [
+      { src: fixPath('imports/tuffybot/image1.png'),      caption: 'UI for the TuffyBot' },
+      { src: fixPath('imports/tuffybot/highlevel.png'),    caption: 'High-Level Diagram' },
+      { src: fixPath('imports/tuffybot/preliminary.jpg'),  caption: 'Preliminary Diagram of the TuffyBot Flow' },
+      { src: fixPath('imports/tuffybot/map.png'),          caption: 'DAG Database' },
+      { src: fixPath('imports/tuffybot/wireframe.png'),    caption: 'Wireframe of TuffyBot' },
+      { src: fixPath('imports/tuffybot/dag1.png'),         caption: 'Diagram of Course Relationships' },
     ],
     overview: `An AI-powered advising chatbot built for NC State University, designed to support over 40,000 students navigating enrollment, course selection, and academic planning. The system integrates directly with NCSU's authentication infrastructure and is built to handle a high volume of concurrent queries reliably.
 
@@ -68,11 +82,11 @@ The design process began in the research stage, where the team discovered both R
     accent: 'pink',
     category: 'professional',
     images: [
-      { src: '/imports/navgrey/figma.png',    caption: 'Figma Sketches' },
-      { src: '/imports/navgrey/sketches.png',    caption: 'High-Level Sketches' },
-      { src: '/imports/navgrey/sketches2.png',   caption: 'High-Level Sketches' },
-      { src: '/imports/navgrey/wireframes.png',  caption: 'Interactive Wireframes' },
-      { src: '/imports/navgrey/wireframes2.png', caption: 'Interactive Wireframes' },
+      { src: fixPath('imports/navgrey/figma.png'),    caption: 'Figma Sketches' },
+      { src: fixPath('imports/navgrey/sketches.png'),    caption: 'High-Level Sketches' },
+      { src: fixPath('imports/navgrey/sketches2.png'),   caption: 'High-Level Sketches' },
+      { src: fixPath('imports/navgrey/wireframes.png'),  caption: 'Interactive Wireframes' },
+      { src: fixPath('imports/navgrey/wireframes2.png'), caption: 'Interactive Wireframes' },
     ],
     overview: `Conducted a full UX design process for an application concept addressing navigation challenges. The project spanned the complete design lifecycle: from early concept sketches and wireframes through high-fidelity prototypes in Figma, user testing, and documented iteration.
 
@@ -109,7 +123,7 @@ The team met with the CEO to discuss the expectations of the newly updated featu
     shortDesc: 'MATLAB GUI for generating ML training datasets from biomedical tissue spectroscopy models.',
     accent: 'pink',
     category: 'professional',
-    images: [{ src: '/imports/research.jpg' }],
+     images: [{ src: fixPath('imports/research.jpg') }],
     overview: `An NSF-funded undergraduate research project conducted at UMass Lowell, focused on generating high-quality training datasets for machine learning models that evaluate mitochondrial function non-invasively through tissue optical readouts.
 
 Developed a MATLAB GUI tool to generate machine learning training datasets from tissue optical spectroscopy models, simulating near-infrared spectroscopy signals based on configurable physiological parameters. The generated labeled absorbance datasets are used for training machine learning models analyzing mitochondrial function.`,
@@ -215,10 +229,10 @@ Through user testing and survey analysis, the initial focus of the research shif
     shortDesc: 'Full-stack café order management platform with three role-based views.',
     accent: 'purple',
     category: 'academic',
-    images: [
-      { src: '/imports/coffee/feuc4.png' },
-      { src: '/imports/coffee/feuc7.png' },
-      { src: '/imports/coffee/feuc12.png' },
+     images: [
+      { src: fixPath('imports/coffee/feuc4.png') },
+      { src: fixPath('imports/coffee/feuc7.png')},
+      { src: fixPath('imports/coffee/feuc12.png')},
     ],
     overview: `A full-stack web platform built for café order management, supporting three distinct user roles: customers placing orders, staff fulfilling them, and admins managing inventory and analytics. The project was developed by a team of six using Agile methodology over a full semester.
 
@@ -276,7 +290,7 @@ Correlation analysis surfaced relationships between stat pairings: examining whe
     shortDesc: "Recreation of core Chip's Challenge puzzle game mechanics with grid-based movement and tile interactions.",
     accent: 'purple',
     category: 'academic',
-    images: [{ src: 'imports/chip_challenge.png' }],
+    images: [{ src: fixPath('imports/chip_challenge.png'), caption: "Chip's Challenge Gameplay" }],
     overview: `Recreated the core mechanics of the classic puzzle game Chip's Challenge as a software engineering project. The implementation focuses on faithful reproduction of the gameplay systems: grid-based movement, tile interactions, obstacle management, and puzzle-solving logic.
 
 The project required careful thinking about game state management, level design representation, and how different game elements interact, translating a well-known game into clean, maintainable code.`,
@@ -304,9 +318,9 @@ Game state management tracks inventory, level completion conditions, and tile st
     accent: 'purple',
     category: 'academic',
     images: [
-      { src: '/imports/inp/playthrough.html', type: 'embed', caption: '▶ Play: The Celestial Library' },
-      { src: '/imports/inp/inpsketch.png', caption: 'Planning Stage' },
-      { src: '/imports/inp/twine.png', caption: 'Twine Branching Overview' },
+      { src: fixPath('imports/inp/playthrough.html'), type: 'embed', caption: '▶ Play: The Celestial Library' },
+      { src: fixPath('imports/inp/inpsketch.png'), caption: 'Planning Stage' },
+      { src: fixPath('imports/inp/twine.png'), caption: 'Twine Branching Overview' },
     ],
     overview: `Designed and developed an interactive narrative experience centered around exploration and storytelling. The Celestial Library invites players into a world where their choices shape the path of the story, with branching narrative paths that respond meaningfully to player decisions.
 
@@ -335,9 +349,7 @@ Narrative design work included writing multiple branches that feel distinct whil
     accent: 'purple',
     category: 'academic',
     images: [    
-        { src: '/imports/puzzle/playthrough.html', type: 'embed', caption: '▶ Play: The Escape Room' },
-        // { src: '/imports/puzzle/screenshot1.png', caption: 'Room overview' },
-        // { src: '/imports/puzzle/screenshot2.png', caption: 'Puzzle detail' }
+      { src: fixPath('imports/puzzle/playthrough.html'), type: 'embed', caption: '▶ Play: The Escape Room' },
     ],
     overview: `Designed a puzzle-based interactive experience exploring themes of light and shadow. Players must manipulate environmental elements, controlling where light falls and where darkness persists, to unlock paths and solve challenges.
 
@@ -446,7 +458,7 @@ Clue design was a central challenge, ensuring that every puzzle had sufficient i
     shortDesc: 'A console-based Blackjack implementation with full game logic, card dealing, and scoring.',
     accent: 'purple',
     category: 'academic',
-    images: [{ src: 'imports/blackjack.png' }],
+    images: [{ src: fixPath('imports/blackjack.png'), caption: 'Blackjack Console' }],
     overview: `Implemented a console-based version of the Blackjack card game as an introductory programming project. The game supports full card dealing, player decision-making, scoring, and win/loss logic, all running through a text-based interface.
 
 This was a foundational project applying fundamental programming concepts: control flow, arrays, and early object-oriented design in a fun, interactive context.`,
@@ -478,8 +490,8 @@ Game logic handles all standard Blackjack rules: natural blackjack detection, de
     shortDesc: 'Serve as a club officer managing 3D printing operations and assistive technology fabrication for a student-run nonprofit at NC State.',
     accent: 'blue',
     category: 'personal',
-    images: [
-      { src: '/imports/hhp/image0.jpg', caption: 'Club meeting to paint the free expression tunnel (halloween themed)' },
+     images: [
+      { src: fixPath('imports/hhp/image0.jpg'), caption: 'Club meeting to paint the free expression tunnel' },
     ],
     overview: `The Helping Hand Project is a student organization focused on designing and producing 3D-printed prosthetic devices for people with limb differences. As Technology and Innovation Officer, I oversee all technical infrastructure and production operations for the club.
 

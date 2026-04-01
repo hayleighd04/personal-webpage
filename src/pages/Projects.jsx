@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useTheme } from '../context/ThemeContext'
-import { projects } from './ProjectDetail'
+import { projects } from './Projectdetail'
 import styles from './Projects.module.css'
 
 const CATEGORIES = [
